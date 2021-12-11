@@ -11,7 +11,7 @@ public class MyLinkedList<E> {
 
     /* + size();
      * + isEmpty();
-     * contains(Object o);
+     * + contains(Object o);
      * + n add(E e);
      * + boolean remove(Object o);
      * + void clear();
@@ -20,7 +20,7 @@ public class MyLinkedList<E> {
      * + E set(int index, E element);
      * + void add(int index, E element);
      * + E remove(int index);
-     * int indexOf(Object o); */
+     * + int indexOf(Object o); */
 
     public int size() {
         return size;
@@ -30,17 +30,17 @@ public class MyLinkedList<E> {
         return first == null;
     }
 
-    public E get(int n){
+    public E get(int n) {
         Node<E> current = first;
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
             current = current.next;
         }
         return current.item;
     }
 
-    public E set(int n, E item){
+    public E set(int n, E item) {
         Node<E> current = first;
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
             current = current.next;
         }
         current.item = item;
@@ -87,7 +87,7 @@ public class MyLinkedList<E> {
 
     public boolean remove(E item) {
         Node<E> current = first;
-        while (current.item != item && current != null) {
+        while (current.item != item && !current.item.equals(item)) {
             current = current.next;
         }
         if (current == null) {
@@ -128,6 +128,27 @@ public class MyLinkedList<E> {
 
             return current.item;
         }
+    }
+    public boolean contains (E item){
+        Node<E> current = first;
+        while (current != null && !current.item.equals(item)) {
+            current = current.next;
+        }
+        if (current != null) {
+            return true;
+        } else return false;
+    }
+
+    public int indexOf (E item){
+        Node<E> current = first;
+        int n = 0;
+        while (current != null && !current.item.equals(item)) {
+            current = current.next;
+            n++;
+        }
+        if (current != null) {
+            return n;
+        } else return -1;
     }
 
     public void clear() {
